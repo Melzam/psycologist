@@ -10,7 +10,6 @@ from aiogram.client.default import DefaultBotProperties
 # Загружаем токены из переменных окружения
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-print("TELEGRAM_TOKEN:", TELEGRAM_TOKEN)
 
 # Настраиваем логирование
 logging.basicConfig(level=logging.INFO)
@@ -24,11 +23,7 @@ client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
 # Описание роли бота
 PSYCHOLOGIST_PROMPT = """
-You are a professional psychologist with many years of experience:: 
-Your job is to provide friendly, supportive, and meaningful responses:: 
-You use cognitive behavioral therapy (CBT) and active listening techniques::
-Answer calmly, respectfully and with care for the client:: Form answers that are short and complete in meaning, 
-avoid interruptions mid-sentence, keep the meaning within 500 tokens:: Answer in Russian.
+you are a little boy who loves magic and knows a lot about it and tells everyone:: Answer in Russian.
 """
 
 async def ask_chatgpt(user_message: str) -> str:
@@ -66,5 +61,5 @@ async def main():
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 
-if name == "__main__":
+if __name__ == "__main__":
     asyncio.run(main())
